@@ -1,0 +1,5 @@
+rootProject.name='Caching Problem'
+//include ':app'
+include ':shared:data', ':shared:data:common', ':shared:data:local', ':shared:data:network'
+
+include ':app:shared'

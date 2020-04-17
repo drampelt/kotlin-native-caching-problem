@@ -1,0 +1,24 @@
+plugins {
+    id "kotlin-multiplatform"
+}
+
+kotlin {
+    targets {
+        def buildForDevice = project.findProperty('kotlin.native.cocoapods.target') == 'ios_arm'
+        def iosPreset = buildForDevice ? presets.iosArm64 : presets.iosX64
+        targetFromPreset(iosPreset, 'ios')
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72'
+            }
+        }
+    }
+}
+
+configurations {
+    // workaround for https://youtrack.jetbrains.com/issue/KT-27170
+    compileClasspath
+}
